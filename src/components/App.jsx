@@ -1,4 +1,5 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
+import { CarList } from './CarList/CarList';
 
 export const App = () => {
   return (
@@ -7,12 +8,12 @@ export const App = () => {
         path="/"
         element={
           <div>
-            Layout <Outlet></Outlet>
+            <Outlet></Outlet>
           </div>
         }
       >
         <Route index element={<div>Home</div>} />
-        <Route path="catalog" element={<div>catalog</div>} />
+        <Route path="catalog" element={<CarList />} />
         <Route path="favorites" element={<div>favorites</div>} />
       </Route>
     </Routes>
