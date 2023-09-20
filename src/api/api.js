@@ -15,22 +15,24 @@ instance.interceptors.response.use(
 );
 
 const getPrice = async () => {
-  // const minPrice = roundToNearestTen(
-  //   await instance.get('?orderby=rentalPrice&order=asc&limit=1&page=1')
-  // );
   const min = await instance.get(
     '?orderby=rentalPrice&order=asc&limit=1&page=1'
   );
   const max = await instance.get(
     '?orderby=rentalPrice&order=desc&limit=1&page=1'
   );
-  console.log('max.data[0].rentalPrice', max.data[0].rentalPrice);
   const minPrice = roundToNearestTen(min.data[0].rentalPrice);
   const maxPrice = roundToNearestTen(max.data[0].rentalPrice);
   return { minPrice, maxPrice };
 };
 
+const getAllCars = async () => {
+  const response = await instance.get();
+  return response.data;
+};
+
 export const api = {
   instance,
   getPrice,
+  getAllCars,
 };

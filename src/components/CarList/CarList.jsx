@@ -18,8 +18,6 @@ export const CarList = () => {
           `?page=${page}&limit=${ITEMS_PER_PAGE}`
         );
 
-        console.log('api.get', await api.getPrice());
-
         setCarList(state => [...state, ...response.data]);
         if (response.data.length < ITEMS_PER_PAGE) {
           setLastPage(true);
@@ -33,7 +31,6 @@ export const CarList = () => {
     fetchData(page);
   }, [page]);
 
-  console.log('isLoading', isLoading);
   return (
     <>
       <ul>
