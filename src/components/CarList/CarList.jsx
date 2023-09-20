@@ -11,6 +11,8 @@ export const CarList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [carList, setCarList] = useState([]);
 
+  console.log(isLoading);
+
   useEffect(() => {
     const fetchData = async page => {
       try {
