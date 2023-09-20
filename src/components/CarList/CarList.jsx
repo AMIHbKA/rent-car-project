@@ -15,8 +15,10 @@ export const CarList = () => {
       try {
         setIsLoading(true);
         const response = await api.instance.get(
-          `cars?page=${page}&limit=${ITEMS_PER_PAGE}`
+          `?page=${page}&limit=${ITEMS_PER_PAGE}`
         );
+
+        console.log('api.get', await api.getPrice());
 
         setCarList(state => [...state, ...response.data]);
         if (response.data.length < ITEMS_PER_PAGE) {
