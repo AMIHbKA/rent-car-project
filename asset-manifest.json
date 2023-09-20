@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/rent-car-project/static/css/main.7cda0caf.css",
-    "main.js": "/rent-car-project/static/js/main.1e1436c9.js",
+    "main.js": "/rent-car-project/static/js/main.ba1ede48.js",
     "static/media/Manrope-Bold.woff2": "/rent-car-project/static/media/Manrope-Bold.1fc53579e1040cbf987d.woff2",
     "static/media/Manrope-Medium.woff2": "/rent-car-project/static/media/Manrope-Medium.9cccfee0f8d3153ae547.woff2",
     "index.html": "/rent-car-project/index.html",
     "main.7cda0caf.css.map": "/rent-car-project/static/css/main.7cda0caf.css.map",
-    "main.1e1436c9.js.map": "/rent-car-project/static/js/main.1e1436c9.js.map"
+    "main.ba1ede48.js.map": "/rent-car-project/static/js/main.ba1ede48.js.map"
   },
   "entrypoints": [
     "static/css/main.7cda0caf.css",
-    "static/js/main.1e1436c9.js"
+    "static/js/main.ba1ede48.js"
   ]
 }
