@@ -1,4 +1,5 @@
-import React from 'react';
+import { MoreInfoModal } from 'components/MoreInfoModal/MoreInfoModal';
+import React, { useState } from 'react';
 import {
   Button,
   Image,
@@ -24,6 +25,11 @@ export const CarCard = ({ car }) => {
   } = car;
   const [, city, country] = address.split(', ');
   const [functional] = functionalities;
+  const [showModal, setShowModal] = useState(false);
+
+  const onShowModal = () => {
+    setShowModal(state => !state);
+  };
 
   return (
     <Wrapper w="274px">
@@ -38,7 +44,10 @@ export const CarCard = ({ car }) => {
         {city} | {country} | {rentalCompany} | {type} | {make} | {id} |{' '}
         {functional}
       </SecondText>
-      <Button>Learn more</Button>
+      {showModal && <MoreInfoModal onActive={onShowModal} data={car} />}
+      <Button type="button" onClick={onShowModal}>
+        Learn more
+      </Button>
     </Wrapper>
   );
 };
