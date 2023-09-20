@@ -3,6 +3,7 @@ import { DropList } from 'components/DropList/DropList';
 import { useEffect, useState } from 'react';
 import { getPriceDropList } from 'utilities/getPriceDropList';
 import data from '../../data/makes.json';
+import { Form, FormField, Input, Label } from './FilterFormStyled';
 
 export const FilterForm = () => {
   const [priceData, setPriceData] = useState([]);
@@ -72,37 +73,46 @@ export const FilterForm = () => {
   }, []);
 
   return (
-    <form>
-      <label>
-        Car brand
+    <Form>
+      <FormField>
+        <Label>Car brand</Label>
         <DropList
+          className="brand"
           data={data}
           placeholder="Enter the text"
           onChange={onChangeBrand}
         />
-      </label>
-
-      <label>
-        Price/ 1 hour
+      </FormField>
+      <FormField>
+        <Label>Price/ 1 hour</Label>
         <DropList
+          className="price"
           data={priceData}
           placeholder="To $"
           onChange={onChangePrice}
         />
-      </label>
+      </FormField>
+      <FormField>
+        <Label htmlFor="Miles">Car mileage / km</Label>
+        <div>
+          <Input
+            type="text"
+            placeholder="From"
+            value={milesFrom}
+            onChange={onChangeMilesFrom}
+          />
+          <Input
+            type="text"
+            placeholder="To"
+            value={milesTo}
+            onChange={onChangeMilesTo}
+          />
+        </div>
+      </FormField>
 
-      <label>
-        Car mileage / km
-        <input
-          placeholder="From"
-          value={milesFrom}
-          onChange={onChangeMilesFrom}
-        />
-        <input placeholder="To" value={milesTo} onChange={onChangeMilesTo} />
-      </label>
       <button type="submit" onClick={OnButtonClick}>
         Search
       </button>
-    </form>
+    </Form>
   );
 };

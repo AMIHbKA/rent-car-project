@@ -1,6 +1,7 @@
 import { api } from 'api/api';
 import { CarCard } from 'components/CarCard/CarCard';
 import React, { useEffect, useState } from 'react';
+import { CardList } from './CarListStyled';
 
 const ITEMS_PER_PAGE = 8;
 
@@ -33,7 +34,7 @@ export const CarList = () => {
 
   return (
     <>
-      <ul>
+      <CardList>
         {carList.map(car => {
           return (
             <li>
@@ -41,7 +42,7 @@ export const CarList = () => {
             </li>
           );
         })}
-      </ul>
+      </CardList>
       {!lastPage && (
         <button type="button" onClick={() => setPage(state => state + 1)}>
           Next page

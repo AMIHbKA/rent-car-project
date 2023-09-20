@@ -28,4 +28,27 @@ html {
       overflow-y: hidden;
     }
 }
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul, li, p, h1, h2, h3, h4 ,h5, h6 {
+    margin: 0;
+    padding: 0;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  button {
+    cursor: pointer;
+  }
 `;

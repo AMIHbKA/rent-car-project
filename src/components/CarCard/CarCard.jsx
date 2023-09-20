@@ -1,4 +1,12 @@
 import React from 'react';
+import {
+  Button,
+  Image,
+  MainText,
+  SecondText,
+  Span,
+  Wrapper,
+} from './CarCardStyled';
 
 export const CarCard = ({ car }) => {
   const {
@@ -18,17 +26,19 @@ export const CarCard = ({ car }) => {
   const [functional] = functionalities;
 
   return (
-    <>
-      <img src={img} alt={description} />
-      <p>
-        {make} <span>{model}</span>, {year}
-      </p>
-      <p>{rentalPrice}</p>
-      <p>
+    <Wrapper w="274px">
+      <Image src={img} alt={description} />
+      <Wrapper flex jc="space-between">
+        <MainText>
+          {make} <Span>{model}</Span>, {year}
+        </MainText>
+        <MainText>${rentalPrice}</MainText>
+      </Wrapper>
+      <SecondText>
         {city} | {country} | {rentalCompany} | {type} | {make} | {id} |{' '}
         {functional}
-      </p>
-      <button>Learn more</button>
-    </>
+      </SecondText>
+      <Button>Learn more</Button>
+    </Wrapper>
   );
 };
