@@ -3,7 +3,7 @@ import { DropList } from 'components/DropList/DropList';
 import { useEffect, useState } from 'react';
 import { getPriceDropList } from 'utilities/getPriceDropList';
 import data from '../../data/makes.json';
-import { Form, FormField, Input, Label } from './FilterFormStyled';
+import { Button, Form, FormField, Input, Label } from './FilterFormStyled';
 
 export const FilterForm = () => {
   const [priceData, setPriceData] = useState([]);
@@ -96,12 +96,14 @@ export const FilterForm = () => {
         <Label htmlFor="Miles">Car mileage / km</Label>
         <div>
           <Input
+            className="right"
             type="text"
             placeholder="From"
             value={milesFrom}
             onChange={onChangeMilesFrom}
           />
           <Input
+            className="left"
             type="text"
             placeholder="To"
             value={milesTo}
@@ -110,9 +112,9 @@ export const FilterForm = () => {
         </div>
       </FormField>
 
-      <button type="submit" onClick={OnButtonClick}>
+      <Button type="submit" onClick={OnButtonClick}>
         Search
-      </button>
+      </Button>
     </Form>
   );
 };

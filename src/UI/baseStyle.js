@@ -16,3 +16,10 @@ export const CommonButtonStyles = css`
     background-color: #0b44cd;
   }
 `;
+
+export const CommonFormTextStyle = css`
+  font-size: 18px;
+  color: #121417;
+  font-weight: 500;
+  line-height: calc(20 / 18);
+`;

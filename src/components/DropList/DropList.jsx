@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { DropListStyle } from './DropListStyled';
 
-export const DropList = ({ data, placeholder, onChange, ...props }) => {
+export const DropList = ({ data, placeholder, onChange }) => {
   const [selectedOption, setSelectedOption] = useState('');
 
   const handleChange = event => {
@@ -13,11 +13,7 @@ export const DropList = ({ data, placeholder, onChange, ...props }) => {
   return (
     <>
       {data && (
-        <DropListStyle
-          value={selectedOption}
-          onChange={handleChange}
-          className={props.className}
-        >
+        <DropListStyle value={selectedOption} onChange={handleChange}>
           {placeholder && (
             <option className="placeholder" value="">
               {placeholder}
