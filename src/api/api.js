@@ -36,9 +36,15 @@ const changeFavorite = async (id, value) => {
   return response.data;
 };
 
+const getFavorites = async () => {
+  const response = await instance.get('?favorite=true');
+  return response.data;
+};
+
 export const api = {
   instance,
   getPrice,
   getAllCars,
   changeFavorite,
+  getFavorites,
 };

@@ -8,18 +8,18 @@ const ITEMS_PER_PAGE = 8;
 
 export const Catalog = () => {
   const [filteredData, setFilteredData] = useState([]);
+  const [isFilterOn, setIsFilterOn] = useState(false);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [carList, setCarList] = useState([]);
 
-  console.log(isLoading);
+  // console.log(isLoading)
 
   useEffect(() => {
     if (filteredData.length > 0) {
-      setCarList(filteredData);
+      // setFilteredData(filteredData);
       setLastPage(true);
-      setPage(1);
       return;
     }
   }, [filteredData]);
@@ -27,7 +27,7 @@ export const Catalog = () => {
   useEffect(() => {
     const fetchData = async page => {
       try {
-        setIsLoading(true);
+        // setIsLoading(true);
         const response = await api.instance.get(
           `?page=${page}&limit=${ITEMS_PER_PAGE}`
         );
@@ -35,22 +35,27 @@ export const Catalog = () => {
         setCarList(state => [...state, ...response.data]);
         if (response.data.length < ITEMS_PER_PAGE) {
           setLastPage(true);
+          return;
         }
         setLastPage(false);
       } catch (error) {
         console.error(error);
       } finally {
-        setIsLoading(false);
+        // setIsLoading(false);
       }
     };
     fetchData(page);
   }, [page]);
 
-  console.log('carList', carList);
   return (
     <Container>
-      <FilterForm setFilteredData={setFilteredData} />
-      <CarList data={filteredData.length === 0 ? carList : filteredData} />
+      <FilterForm setFilteredData={setFilteredData} isFilter={setIsFilterOn} />
+      {!filteredData.length && isFilterOn ? (
+        <div>No filter data</div>
+      ) : (
+        <CarList data={!filteredData.length ? carList : filteredData} />
+      )}
+
       {!lastPage && (
         <button type="button" onClick={() => setPage(state => state + 1)}>
           Next page

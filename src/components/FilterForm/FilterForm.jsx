@@ -5,7 +5,7 @@ import { getPriceDropList } from 'utilities/getPriceDropList';
 import data from '../../data/makes.json';
 import { Button, Form, FormField, Input, Label } from './FilterFormStyled';
 
-export const FilterForm = ({ setFilteredData }) => {
+export const FilterForm = ({ setFilteredData, isFilter }) => {
   const [priceData, setPriceData] = useState([]);
   const [price, setPrice] = useState('');
   const [brand, setBrand] = useState('');
@@ -21,24 +21,32 @@ export const FilterForm = ({ setFilteredData }) => {
     return isBrandMatch && isPriceMatch && isMilesFromMatch && isMilesToMatch;
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.getAllCars();
+        setAllData(response);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const OnButtonClick = async event => {
     event.preventDefault();
-
     const isFilterExists = brand || price || milesFrom || milesTo;
 
     if (!isFilterExists) {
+      setFilteredData([]);
+      isFilter(false);
       return;
     }
+    isFilter(true);
     try {
-      if (!allData.length) {
-        const data = await api.getAllCars();
-        setAllData(data);
-      }
-
       const filteredData = allData.filter(filterCars);
       setFilteredData(filteredData);
-      console.log('Filtered Data:', filteredData);
-      return filteredData;
     } catch (error) {
       console.error(error);
     }
@@ -74,7 +82,7 @@ export const FilterForm = ({ setFilteredData }) => {
   }, []);
 
   return (
-    <Form>
+    <Form onSubmit={OnButtonClick}>
       <FormField>
         <Label>Car brand</Label>
         <DropList
@@ -113,9 +121,7 @@ export const FilterForm = ({ setFilteredData }) => {
         </div>
       </FormField>
 
-      <Button type="submit" onClick={OnButtonClick}>
-        Search
-      </Button>
+      <Button type="submit">Search</Button>
     </Form>
   );
 };
