@@ -5,7 +5,7 @@ import { getPriceDropList } from 'utilities/getPriceDropList';
 import data from '../../data/makes.json';
 import { Button, Form, FormField, Input, Label } from './FilterFormStyled';
 
-export const FilterForm = () => {
+export const FilterForm = ({ setFilteredData }) => {
   const [priceData, setPriceData] = useState([]);
   const [price, setPrice] = useState('');
   const [brand, setBrand] = useState('');
@@ -36,6 +36,7 @@ export const FilterForm = () => {
       }
 
       const filteredData = allData.filter(filterCars);
+      setFilteredData(filteredData);
       console.log('Filtered Data:', filteredData);
       return filteredData;
     } catch (error) {
