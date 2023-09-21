@@ -38,7 +38,7 @@ export const Condition = styled.p`
   color: #363535;
   font-size: 12px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: calc(18 / 12); /* 150% */
   letter-spacing: -0.24px;
   border-radius: 35px;

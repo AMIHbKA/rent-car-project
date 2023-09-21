@@ -1,5 +1,6 @@
 import { MainText, SecondText, Span } from 'components/CarCard/CarCardStyled';
 import { Modal } from 'components/Modal/Modal';
+import { formattedNumber } from 'utilities/formattedNumber';
 import {
   Condition,
   ConditionContainer,
@@ -55,7 +56,7 @@ export const MoreInfoModal = ({ onActive, data }) => {
                 return <Condition>{condition}</Condition>;
               })}
               <Condition>
-                Mileage: <Span>{mileage}</Span>
+                Mileage: <Span>{formattedNumber(+mileage)}</Span>
               </Condition>
               <Condition>
                 Price: <Span>{rentalPrice}$</Span>

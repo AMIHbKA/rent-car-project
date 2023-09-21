@@ -1,7 +1,6 @@
 import { CarList } from 'components/CarList/CarList';
 import { FilterForm } from 'components/FilterForm/FilterForm';
 import { useEffect, useState } from 'react';
-import { Container } from 'UI/Container';
 import { api } from 'api/api';
 
 const ITEMS_PER_PAGE = 8;
@@ -48,7 +47,7 @@ export const Catalog = () => {
   }, [page]);
 
   return (
-    <Container>
+    <>
       <FilterForm setFilteredData={setFilteredData} isFilter={setIsFilterOn} />
       {!filteredData.length && isFilterOn ? (
         <div>No filter data</div>
@@ -61,6 +60,6 @@ export const Catalog = () => {
           Next page
         </button>
       )}
-    </Container>
+    </>
   );
 };
