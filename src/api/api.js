@@ -31,8 +31,14 @@ const getAllCars = async () => {
   return response.data;
 };
 
+const changeFavorite = async (id, value) => {
+  const response = await instance.put(`/${id}`, { favorite: value });
+  return response.data;
+};
+
 export const api = {
   instance,
   getPrice,
   getAllCars,
+  changeFavorite,
 };

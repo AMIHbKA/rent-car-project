@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { CommonButtonStyles } from 'UI/baseStyle';
+import { Heart } from 'UI/icons';
 
 export const Image = styled.img`
   width: 274px;
@@ -13,6 +14,19 @@ export const Image = styled.img`
     #f3f3f2;
   object-fit: cover;
   object-position: center;
+`;
+
+export const HeartIcon = styled(Heart)`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  stroke: white;
+  cursor: pointer;
+
+  &.favorite {
+    stroke: #3470ff;
+    fill: #3470ff;
+  }
 `;
 
 export const MainText = styled.p`
@@ -74,6 +88,8 @@ ${props => props.maxH && `max-height: ${props.h};`}
 
 
   ${props => props.outline && `outline: 1px red solid;`}
+
+${props => props.relative && `position: relative;`}
 `;
 
 export const Button = styled.button`
