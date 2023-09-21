@@ -1,5 +1,11 @@
 import { MainText, SecondText, Span } from 'components/CarCard/CarCardStyled';
 import { Modal } from 'components/Modal/Modal';
+import {
+  Condition,
+  ConditionContainer,
+  Link,
+  MoreInfoWrapper,
+} from './MoreInfoModalStyled';
 
 export const MoreInfoModal = ({ onActive, data }) => {
   const {
@@ -21,32 +27,44 @@ export const MoreInfoModal = ({ onActive, data }) => {
   const [, city, country] = address.split(', ');
   return (
     <Modal onActive={onActive}>
-      <div>
+      <MoreInfoWrapper>
         <img src={img} alt={description} />
         <MainText>
           {make} <Span>{model}</Span>, {year}
         </MainText>
-        <SecondText>
+        <SecondText className="second-text">
           {city} | {country} | Id: {id} | Year: {year} | Type: {type} | Fuel
           Consumption: {fuelConsumption} | Engine Size: {engineSize}
         </SecondText>
-        <p>{description}</p>
-        <p>Accessories and functionalities:</p>
-        <p>{accessories.join(' | ')}</p>
+        <p className="description-text">{description}</p>
+        <p className="subtitle-text">Accessories and functionalities:</p>
+        <SecondText>{accessories.join(' | ')}</SecondText>
         {rentalConditions.length && (
           <>
-            <p>Rental Conditions: </p>
-            {rentalConditions.split('\n').map(condition => (
-              <p>{condition}</p>
-            ))}
-            <p>
-              Mileage: <span>{mileage}</span>
-            </p>
-            <p>Price: {rentalPrice}$</p>
+            <p className="subtitle-text">Rental Conditions: </p>
+            <ConditionContainer>
+              {rentalConditions.split('\n').map(condition => {
+                if (condition.includes(':')) {
+                  const [text, value] = condition.split(':');
+                  return (
+                    <Condition>
+                      {text}: <Span>{value}</Span>
+                    </Condition>
+                  );
+                }
+                return <Condition>{condition}</Condition>;
+              })}
+              <Condition>
+                Mileage: <Span>{mileage}</Span>
+              </Condition>
+              <Condition>
+                Price: <Span>{rentalPrice}$</Span>
+              </Condition>
+            </ConditionContainer>
           </>
         )}
-        <button type="tel">Rental car</button>
-      </div>
+        <Link href="tel:+380730000000">Rental car</Link>
+      </MoreInfoWrapper>
     </Modal>
   );
 };

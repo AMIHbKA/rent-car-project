@@ -48,7 +48,7 @@ ul, li, p, h1, h2, h3, h4 ,h5, h6 {
     text-decoration: none;
   }
 
-  button {
+  button, a {
     cursor: pointer;
   }
 `;

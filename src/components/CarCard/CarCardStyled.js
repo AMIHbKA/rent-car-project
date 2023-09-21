@@ -29,7 +29,7 @@ export const MainText = styled.p`
 export const SecondText = styled.p`
   font-size: 12px;
   font-weight: 400;
-  height: 40px;
+  max-height: 40px;
   line-height: calc(18 / 12);
   color: rgb(18 20 23 / 0.5);
   overflow-wrap: break-word;
