@@ -1,7 +1,9 @@
 import { api } from 'api/api';
 import { DropList } from 'components/DropList/DropList';
 import { useEffect, useState } from 'react';
+import { formattedNumber } from 'utilities/formattedNumber';
 import { getPriceDropList } from 'utilities/getPriceDropList';
+import { onlyDigit } from 'utilities/onlyDigits';
 import data from '../../data/makes.json';
 import { Button, Form, FormField, Input, Label } from './FilterFormStyled';
 
@@ -61,11 +63,11 @@ export const FilterForm = ({ setFilteredData, isFilter }) => {
   };
 
   const onChangeMilesFrom = event => {
-    setMilesFrom(event.currentTarget.value);
+    setMilesFrom(onlyDigit(event.currentTarget.value));
   };
 
   const onChangeMilesTo = event => {
-    setMilesTo(event.currentTarget.value);
+    setMilesTo(onlyDigit(event.currentTarget.value));
   };
 
   useEffect(() => {
@@ -108,14 +110,14 @@ export const FilterForm = ({ setFilteredData, isFilter }) => {
             className="right"
             type="text"
             placeholder="From"
-            value={milesFrom}
+            value={`From ${formattedNumber(milesFrom)}`}
             onChange={onChangeMilesFrom}
           />
           <Input
             className="left"
             type="text"
             placeholder="To"
-            value={milesTo}
+            value={`To ${formattedNumber(milesTo)}`}
             onChange={onChangeMilesTo}
           />
         </div>
