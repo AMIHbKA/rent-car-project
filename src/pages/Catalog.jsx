@@ -2,6 +2,7 @@ import { CarList } from 'components/CarList/CarList';
 import { FilterForm } from 'components/FilterForm/FilterForm';
 import { useEffect, useState } from 'react';
 import { api } from 'api/api';
+import { LinkButton } from 'UI/baseStyle';
 
 const ITEMS_PER_PAGE = 8;
 
@@ -10,14 +11,10 @@ export const Catalog = () => {
   const [isFilterOn, setIsFilterOn] = useState(false);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(false);
-  // const [isLoading, setIsLoading] = useState(false);
   const [carList, setCarList] = useState([]);
-
-  // console.log(isLoading)
 
   useEffect(() => {
     if (filteredData.length > 0) {
-      // setFilteredData(filteredData);
       setLastPage(true);
       return;
     }
@@ -26,7 +23,6 @@ export const Catalog = () => {
   useEffect(() => {
     const fetchData = async page => {
       try {
-        // setIsLoading(true);
         const response = await api.instance.get(
           `?page=${page}&limit=${ITEMS_PER_PAGE}`
         );
@@ -40,7 +36,6 @@ export const Catalog = () => {
       } catch (error) {
         console.error(error);
       } finally {
-        // setIsLoading(false);
       }
     };
     fetchData(page);
@@ -56,9 +51,9 @@ export const Catalog = () => {
       )}
 
       {!lastPage && (
-        <button type="button" onClick={() => setPage(state => state + 1)}>
-          Next page
-        </button>
+        <LinkButton type="button" onClick={() => setPage(state => state + 1)}>
+          Load More
+        </LinkButton>
       )}
     </>
   );
